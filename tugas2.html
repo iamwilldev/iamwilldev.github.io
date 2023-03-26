@@ -1,806 +1,888 @@
-
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tugas 2 Dissimilarity - Menghitung Jarak &#8212; My sample book</title>
-  
-  
-  
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugas 2 Dissimilarity - Menghitung Jarak &#8212; My sample book</title>
+
+
+
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
-  
+
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-  
+
   <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/6.1.2/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285"
+    type="text/css" />
+  <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+  <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+  <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+  <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+  <link rel="stylesheet" type="text/css" href="_static/styles/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+  <link rel="stylesheet" type="text/css" href="_static/styles/theme.css" />
+  <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/6.1.2/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/copybutton_funcs.js"></script>
-    <script src="_static/design-tabs.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/documentation_options.js"></script>
-    <script src="_static/jquery-3.6.0.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/sphinx-thebe.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/underscore-1.13.1.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/scripts/bootstrap.js"></script>
-    <script src="_static/scripts/pydata-sphinx-theme.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas2';</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/>
-  </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+  <script>
+    let toggleHintShow = 'Click to show';
+  </script>
+  <script>
+    let toggleHintHide = 'Click to hide';
+  </script>
+  <script>
+    let toggleOpenOnPrint = 'true';
+  </script>
+  <script src="_static/togglebutton.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  <script src="_static/copybutton_funcs.js"></script>
+  <script src="_static/design-tabs.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/documentation_options.js"></script>
+  <script src="_static/jquery-3.6.0.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/language_data.js"></script>
+  <script src="_static/searchtools.js"></script>
+  <script src="_static/sphinx-thebe.js"></script>
+  <script src="_static/togglebutton.js"></script>
+  <script src="_static/underscore-1.13.1.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/scripts/bootstrap.js"></script>
+  <script src="_static/scripts/pydata-sphinx-theme.js"></script>
+  <script src="_static/scripts/sphinx-book-theme.js"></script>
+  <script>
+    var togglebuttonSelector = '.toggle, .admonition.dropdown';
+  </script>
+  <script src="_static/design-tabs.js"></script>
+  <script>
+    const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+    const thebe_selector = ".thebe,.cell"
+    const thebe_selector_input = "pre"
+    const thebe_selector_output = ".output, .cell_output"
+  </script>
+  <script async="async" src="_static/sphinx-thebe.js"></script>
+  <script>
+    DOCUMENTATION_OPTIONS.pagename = 'tugas2';
+  </script>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en" />
+</head>
 
-  
-  
+
+<body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%"
+  data-default-mode="">
+
+
+
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
+
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary" />
   <label class="overlay overlay-primary" for="__primary"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
+
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary" />
   <label class="overlay overlay-secondary" for="__secondary"></label>
-  
+
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
-<form class="bd-search d-flex align-items-center"
-      action="search.html"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
+      <form class="bd-search d-flex align-items-center" action="search.html" method="get">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..."
+          aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off"
+          spellcheck="false" />
+        <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+      </form>
+    </div>
   </div>
-  
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
-  
+
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+  </nav>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
+
       <div class="bd-sidebar-primary bd-sidebar">
-        
 
-  
-  <div class="sidebar-header-items sidebar-primary__section">
-    
-    
-    
-    
-  </div>
-  
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-  
 
-<a class="navbar-brand logo" href="intro.html">
-  
-  
-  
-  
-    
-    
-      
-    
-    
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
-  
-  
-</a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
-                </a>
-            </li>
-        </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-</ul>
 
-    </div>
-</nav></div>
-    </div>
-  
-  
-  <div class="sidebar-primary-items__end sidebar-primary__section">
-  </div>
-  
-  <div id="rtd-footer-container"></div>
+        <div class="sidebar-header-items sidebar-primary__section">
+
+
+
+
+        </div>
+
+        <div class="sidebar-primary-items__start sidebar-primary__section">
+          <div class="sidebar-primary-item">
+
+
+            <a class="navbar-brand logo" href="intro.html">
+
+
+
+
+
+
+
+
+
+              <img src="_static/logo.png" class="logo__image only-light" alt="Logo image" />
+              <script>
+                document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);
+              </script>
+
+
+            </a></div>
+          <div class="sidebar-primary-item">
+            <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+              <div class="bd-toc-item navbar-nav active">
+
+                <ul class="nav bd-sidenav bd-sidenav__home-link">
+                  <li class="toctree-l1 current active">
+                    <a class="reference internal" href="intro.html">
+                      Pendahuluan
+                    </a>
+                  </li>
+                </ul>
+                <p aria-level="2" class="caption" role="heading">
+                  <span class="caption-text">
+                    Tugas Data Mining
+                  </span>
+                </p>
+
+                <ul class="current nav bd-sidenav">
+                  <li class="toctree-l1"><a class="current reference internal" href="tugas1.html">Tugas 1 - Join
+                      Data dari MySQL dan PostgreSQL Files</a></li>
+                  <li class="toctree-l1"><a class="reference internal" href="tugas2.html">Tugas 2 Dissimilarity -
+                      Menghitung Jarak</a>
+                  </li>
+                </ul>
+
+              </div>
+            </nav>
+          </div>
+        </div>
+
+
+        <div class="sidebar-primary-items__end sidebar-primary__section">
+        </div>
+
+        <div id="rtd-footer-container"></div>
 
 
       </div>
-      
+
       <main id="main-content" class="bd-main">
-        
-        
-
-<div class="sbt-scroll-pixel-helper"></div>
-
-          <div class="bd-content">
-            <div class="bd-article-container">
-              
-              <div class="bd-header-article">
-<div class="header-article-items header-article__inner">
-  
-    <div class="header-article-items__start">
-      
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <span class="fa-solid fa-bars"></span>
-</label></div>
-      
-    </div>
-  
-  
-    <div class="header-article-items__end">
-      
-        <div class="header-article-item">
-
-<div class="article-header-buttons">
 
 
 
+        <div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+
+            <div class="bd-header-article">
+              <div class="header-article-items header-article__inner">
+
+                <div class="header-article-items__start">
+
+                  <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm"
+                      for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom"
+                      data-bs-toggle="tooltip">
+                      <span class="fa-solid fa-bars"></span>
+                    </label></div>
+
+                </div>
 
 
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Source repository"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
+                <div class="header-article-items__end">
 
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="btn__text-container">Repository</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas2.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Open an issue"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
+                  <div class="header-article-item">
 
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
+                    <div class="article-header-buttons">
+
+
+
+
+
+                      <div class="dropdown dropdown-source-buttons">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                          aria-expanded="false" aria-label="Source repositories">
+                          <i class="fab fa-github"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+
+
+
+                          <li><a href="https://github.com/iamwilldev/iamwilldev.github.io" target="_blank"
+                              class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository"
+                              data-bs-placement="left" data-bs-toggle="tooltip">
+
+
+                              <span class="btn__icon-container">
+                                <i class="fab fa-github"></i>
+                              </span>
+                              <span class="btn__text-container">Repository</span>
+                            </a>
+                          </li>
+
+                        </ul>
+                      </div>
 
 
 
 
 
 
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="_sources/tugas2.ipynb" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Download source file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
+                      <div class="dropdown dropdown-download-buttons">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                          aria-expanded="false" aria-label="Download this page">
+                          <i class="fas fa-download"></i>
+                        </button>
+                        <ul class="dropdown-menu">
 
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Print to PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
 
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
+
+                          <li><a href="_sources/tugas2.ipynb" target="_blank"
+                              class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file"
+                              data-bs-placement="left" data-bs-toggle="tooltip">
+
+
+                              <span class="btn__icon-container">
+                                <i class="fas fa-file"></i>
+                              </span>
+                              <span class="btn__text-container">.ipynb</span>
+                            </a>
+                          </li>
 
 
 
 
-<button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
-  title="Fullscreen mode"
-  data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
+                          <li>
+                            <button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item"
+                              title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
 
 
-<script>
-document.write(`
+                              <span class="btn__icon-container">
+                                <i class="fas fa-file-pdf"></i>
+                              </span>
+                              <span class="btn__text-container">.pdf</span>
+                            </button>
+                          </li>
+
+                        </ul>
+                      </div>
+
+
+
+
+                      <button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button"
+                        title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+
+
+                        <span class="btn__icon-container">
+                          <i class="fas fa-expand"></i>
+                        </span>
+
+                      </button>
+
+
+                      <script>
+                        document.write(`
   <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
     <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
     <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
-</script>
+                      </script>
 
-<script>
-document.write(`
+                      <script>
+                        document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
-</div></div>
-      
-    </div>
-  
-</div>
-</div>
-              
-              
+                      </script>
+                      <label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"
+                        title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+                        <span class="fa-solid fa-list"></span>
+                      </label>
+                    </div>
+                  </div>
 
-<div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tugas 2 Dissimilarity - Menghitung Jarak</h1>
-    <!-- Table of contents -->
-    <div id="print-main-content">
-        <div id="jb-print-toc">
-            
-            <div>
-                <h2> Contents </h2>
+                </div>
+
+              </div>
             </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data">1. Tipe data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menetukan-jarak-dari-data">2. Menetukan jarak dari data</a></li>
-</ul>
-            </nav>
-        </div>
-    </div>
-</div>
 
-              
-                
-<div id="searchbox"></div>
-                <article class="bd-article" role="main">
-                  
-  <div class="tex2jax_ignore mathjax_ignore section" id="tugas-2-dissimilarity-menghitung-jarak">
-<h1>Tugas 2 Dissimilarity - Menghitung Jarak<a class="headerlink" href="#tugas-2-dissimilarity-menghitung-jarak" title="Permalink to this heading">#</a></h1>
-<h2> Dissimilarity - Mengitung Jarak</h2>
-<ol class="arabic simple">
-<li><p>Memahami tipe data</p></li>
-<li><p>Tentukan jarak dari data yang dibuat, data mengandung 4 tipe data:</p>
-<ul class="simple">
-<li><p>Numerik</p></li>
-<li><p>Kategorical / Nominal</p></li>
-<li><p>Binary Asimetris / Simestris</p></li>
-<li><p>Ordinal</p></li>
-</ul>
-</li>
-</ol>
-<div class="section" id="tipe-data">
-<h2>1. Tipe data<a class="headerlink" href="#tipe-data" title="Permalink to this heading">#</a></h2>
-<h2>1.1 Atribut Nominal / Kategorical</h2>
-<p>Nominal berarti "berkaitan dengan nama." Nilai atribut nominal adalah simbol atau nama benda. Setiap nilai mewakili beberapa jenis kategori, kode, atau status, sehingga atribut nominal juga disebut sebagai kategori. Nilai tidak memiliki urutan yang berarti. Dalam ilmu komputer, nilai juga dikenal sebagai pencacahan.</p><h2>1.2 Atribut Binary (Biner)</h2><p>Atribut biner adalah atribut nominal dengan hanya dua kategori atau status 0 atau 1, di mana 0 biasanya berarti bahwa atribut tersebut tidak ada, dan 1 berarti ada. Atribut biner disebut sebagai Boolean jika kedua status sesuai dengan benar dan salah.</p><h2>1.3 Ordinal</h2><p>Atribut ordinal adalah atribut dengan kemungkinan nilai yang memiliki urutan atau peringkat yang bermakna di antara mereka, tetapi besarnya antara nilai-nilai yang berurutan tidak diketahui.</p><h2>1.4 Numeric</h2><p>Atribut numerik bersifat kuantitatif; yaitu, itu adalah kuantitas yang dapat diukur, direpresentasikan dalam bilangan bulat atau nilai nyata. Atribut numerik dapat berskala interval atau berskala rasio.</p></div>
-<div class="section" id="menetukan-jarak-dari-data">
-<h2>2. Menetukan jarak dari data<a class="headerlink" href="#menetukan-jarak-dari-data" title="Permalink to this heading">#</a></h2>
-<h2>Install Library</h2><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+
+
+            <div id="jb-print-docs-body" class="onlyprint">
+              <h1>Tugas 2 Dissimilarity - Menghitung Jarak</h1>
+              <!-- Table of contents -->
+              <div id="print-main-content">
+                <div id="jb-print-toc">
+
+                  <div>
+                    <h2> Contents </h2>
+                  </div>
+                  <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+                      <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data">1.
+                          Tipe data</a></li>
+                      <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link"
+                          href="#menetukan-jarak-dari-data">2. Menetukan jarak dari data</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div id="searchbox"></div>
+            <article class="bd-article" role="main">
+
+              <div class="tex2jax_ignore mathjax_ignore section" id="tugas-2-dissimilarity-menghitung-jarak">
+                <h1>Tugas 2 Dissimilarity - Menghitung Jarak<a class="headerlink"
+                    href="#tugas-2-dissimilarity-menghitung-jarak" title="Permalink to this heading">#</a></h1>
+                <h2> Dissimilarity - Mengitung Jarak</h2>
+                <ol class="arabic simple">
+                  <li>
+                    <p>Memahami tipe data</p>
+                  </li>
+                  <li>
+                    <p>Tentukan jarak dari data yang dibuat, data mengandung 4 tipe data:</p>
+                    <ul class="simple">
+                      <li>
+                        <p>Numerik</p>
+                      </li>
+                      <li>
+                        <p>Kategorical / Nominal</p>
+                      </li>
+                      <li>
+                        <p>Binary Asimetris / Simestris</p>
+                      </li>
+                      <li>
+                        <p>Ordinal</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+                <div class="section" id="tipe-data">
+                  <h2>1. Tipe data<a class="headerlink" href="#tipe-data" title="Permalink to this heading">#</a></h2>
+                  <h2>1.1 Atribut Nominal / Kategorical</h2>
+                  <p>Nominal berarti "berkaitan dengan nama." Nilai atribut nominal adalah simbol atau nama benda.
+                    Setiap nilai mewakili beberapa jenis kategori, kode, atau status, sehingga atribut nominal juga
+                    disebut sebagai kategori. Nilai tidak memiliki urutan yang berarti. Dalam ilmu komputer, nilai juga
+                    dikenal sebagai pencacahan.</p>
+                  <h2>1.2 Atribut Binary (Biner)</h2>
+                  <p>Atribut biner adalah atribut nominal dengan hanya dua kategori atau status 0 atau 1, di mana 0
+                    biasanya berarti bahwa atribut tersebut tidak ada, dan 1 berarti ada. Atribut biner disebut sebagai
+                    Boolean jika kedua status sesuai dengan benar dan salah.</p>
+                  <h2>1.3 Ordinal</h2>
+                  <p>Atribut ordinal adalah atribut dengan kemungkinan nilai yang memiliki urutan atau peringkat yang
+                    bermakna di antara mereka, tetapi besarnya antara nilai-nilai yang berurutan tidak diketahui.</p>
+                  <h2>1.4 Numeric</h2>
+                  <p>Atribut numerik bersifat kuantitatif; yaitu, itu adalah kuantitas yang dapat diukur,
+                    direpresentasikan dalam bilangan bulat atau nilai nyata. Atribut numerik dapat berskala interval
+                    atau berskala rasio.</p>
+                </div>
+                <div class="section" id="menetukan-jarak-dari-data">
+                  <h2>2. Menetukan jarak dari data<a class="headerlink" href="#menetukan-jarak-dari-data"
+                      title="Permalink to this heading">#</a></h2>
+                  <h2>Install Library</h2>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="o">%%capture</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
-</pre></div>
-</div>
-</div>
-</div>
-<h2>Import Module</h2><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>Import Module</h2>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
-<h2>Ambil Dataset</h2><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/iamwilldev/2a73758f9e4e98b71097715c6043381c/raw/a626cfa9d1b61a4b66aee45ca48af0a6efdcffb1/medis-pd-dataset.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>Ambil Dataset</h2>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/iamwilldev/2a73758f9e4e98b71097715c6043381c/raw/a626cfa9d1b61a4b66aee45ca48af0a6efdcffb1/medis-pd-dataset.csv&quot;</span><span class="p">)</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output text_html">
+                        <div id="df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1">
+                          <div class="colab-df-container">
+                            <div>
+                              <style scoped>
+                                .dataframe tbody tr th:only-of-type {
+                                  vertical-align: middle;
+                                }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+                                .dataframe tbody tr th {
+                                  vertical-align: top;
+                                }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Kemungkinan Terkena Kanker Payudara</th>
-      <th>Umur</th>
-      <th>Ukuran Tumor (cm)</th>
-      <th>Jumlah Nodus Getah Bening</th>
-      <th>Jenis</th>
-      <th>Stadium</th>
-      <th>Hasil Tes Reseptop Hormon</th>
-      <th>Skor Gleason</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>P001</td>
-      <td>Ya</td>
-      <td>50</td>
-      <td>3.5</td>
-      <td>2</td>
-      <td>Karsinoma Duktal Invasif</td>
-      <td>2</td>
-      <td>Positif</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>P002</td>
-      <td>Tidak</td>
-      <td>45</td>
-      <td>1.2</td>
-      <td>0</td>
-      <td>Karsinoma Lobular Invasif</td>
-      <td>1</td>
-      <td>Negatif</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>P003</td>
-      <td>Ya</td>
-      <td>62</td>
-      <td>4.0</td>
-      <td>3</td>
-      <td>Karsinoma Duktal Invasif</td>
-      <td>3</td>
-      <td>Positif</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P004</td>
-      <td>Ya</td>
-      <td>38</td>
-      <td>2.5</td>
-      <td>1</td>
-      <td>Karsinoma Duktal Invasif</td>
-      <td>1</td>
-      <td>Positif</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>P005</td>
-      <td>Tidak</td>
-      <td>55</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>Karsinoma Lobular Invasif</td>
-      <td>0</td>
-      <td>Negatif</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
+                                .dataframe thead th {
+                                  text-align: right;
+                                }
+                              </style>
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Kemungkinan Terkena Kanker Payudara</th>
+                                    <th>Umur</th>
+                                    <th>Ukuran Tumor (cm)</th>
+                                    <th>Jumlah Nodus Getah Bening</th>
+                                    <th>Jenis</th>
+                                    <th>Stadium</th>
+                                    <th>Hasil Tes Reseptop Hormon</th>
+                                    <th>Skor Gleason</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>0</th>
+                                    <td>P001</td>
+                                    <td>Ya</td>
+                                    <td>50</td>
+                                    <td>3.5</td>
+                                    <td>2</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                    <td>2</td>
+                                    <td>Positif</td>
+                                    <td>7</td>
+                                  </tr>
+                                  <tr>
+                                    <th>1</th>
+                                    <td>P002</td>
+                                    <td>Tidak</td>
+                                    <td>45</td>
+                                    <td>1.2</td>
+                                    <td>0</td>
+                                    <td>Karsinoma Lobular Invasif</td>
+                                    <td>1</td>
+                                    <td>Negatif</td>
+                                    <td>6</td>
+                                  </tr>
+                                  <tr>
+                                    <th>2</th>
+                                    <td>P003</td>
+                                    <td>Ya</td>
+                                    <td>62</td>
+                                    <td>4.0</td>
+                                    <td>3</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                    <td>3</td>
+                                    <td>Positif</td>
+                                    <td>8</td>
+                                  </tr>
+                                  <tr>
+                                    <th>3</th>
+                                    <td>P004</td>
+                                    <td>Ya</td>
+                                    <td>38</td>
+                                    <td>2.5</td>
+                                    <td>1</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                    <td>1</td>
+                                    <td>Positif</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <th>4</th>
+                                    <td>P005</td>
+                                    <td>Tidak</td>
+                                    <td>55</td>
+                                    <td>1.0</td>
+                                    <td>0</td>
+                                    <td>Karsinoma Lobular Invasif</td>
+                                    <td>0</td>
+                                    <td>Negatif</td>
+                                    <td>3</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <button class="colab-df-convert"
+                              onclick="convertToInteractive('df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1')"
+                              title="Convert this dataframe to an interactive table." style="display:none;">
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                  d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" />
+                                <path
+                                  d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+                              </svg>
+                            </button>
 
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
+                            <style>
+                              .colab-df-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 12px;
+                              }
 
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
+                              .colab-df-convert {
+                                background-color: #E8F0FE;
+                                border: none;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: none;
+                                fill: #1967D2;
+                                height: 32px;
+                                padding: 0 0 0 0;
+                                width: 32px;
+                              }
 
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+                              .colab-df-convert:hover {
+                                background-color: #E2EBFA;
+                                box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+                                fill: #174EA6;
+                              }
 
-      <script>
-        const buttonEl =
-          document.querySelector('#df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
+                              [theme=dark] .colab-df-convert {
+                                background-color: #3B4455;
+                                fill: #D2E3FC;
+                              }
 
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
+                              [theme=dark] .colab-df-convert:hover {
+                                background-color: #434B5C;
+                                box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+                                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+                                fill: #FFFFFF;
+                              }
+                            </style>
 
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<p><strong>Penjelasan Data</strong></p>
-<ol class="arabic simple">
-<li><p>Atribut Binary:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Kemungkinan terkena kanker payudara (1 = Ya, 0 = Tidak)
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Atribut Numeric:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Umur (angka bulat)
+                            <script>
+                              const buttonEl =
+                                document.querySelector(
+                                  '#df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1 button.colab-df-convert');
+                              buttonEl.style.display =
+                                google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+                              async function convertToInteractive(key) {
+                                const element = document.querySelector('#df-70e5c7f5-0b46-4dfb-a83e-d8bd0ace61f1');
+                                const dataTable =
+                                  await google.colab.kernel.invokeFunction('convertToInteractive',
+                                    [key], {});
+                                if (!dataTable) return;
+
+                                const docLinkHtml = 'Like what you see? Visit the ' +
+                                  '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' +
+                                  ' to learn more about interactive tables.';
+                                element.innerHTML = '';
+                                dataTable['output_type'] = 'display_data';
+                                await google.colab.output.renderOutput(dataTable, element);
+                                const docLink = document.createElement('div');
+                                docLink.innerHTML = docLinkHtml;
+                                element.appendChild(docLink);
+                              }
+                            </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p><strong>Penjelasan Data</strong></p>
+                  <ol class="arabic simple">
+                    <li>
+                      <p>Atribut Binary:</p>
+                    </li>
+                  </ol>
+                  <div class="highlight-none notranslate">
+                    <div class="highlight">
+                      <pre><span></span>*   Kemungkinan terkena kanker payudara (1 = Ya, 0 = Tidak)
+</pre>
+                    </div>
+                  </div>
+                  <ol class="arabic simple" start="2">
+                    <li>
+                      <p>Atribut Numeric:</p>
+                    </li>
+                  </ol>
+                  <div class="highlight-none notranslate">
+                    <div class="highlight">
+                      <pre><span></span>*   Umur (angka bulat)
 *   Ukuran tumor (dalam cm)
 *   Jumlah nodus getah bening (angka bulat)
-</pre></div>
-</div>
-<ol class="arabic simple" start="3">
-<li><p>Atribut Nominal/Kategorical:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Jenis (Karsinoma Duktal Invasif, Karsinoma Lobular Invasif, dll.)
+</pre>
+                    </div>
+                  </div>
+                  <ol class="arabic simple" start="3">
+                    <li>
+                      <p>Atribut Nominal/Kategorical:</p>
+                    </li>
+                  </ol>
+                  <div class="highlight-none notranslate">
+                    <div class="highlight">
+                      <pre><span></span>*   Jenis (Karsinoma Duktal Invasif, Karsinoma Lobular Invasif, dll.)
 *   Stadium kanker (Stadium 1, Stadium 2, dll.)
 *   Hasil Tes Receptor Hormon (Positif, Negatif)
-</pre></div>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>Atribut Ordinal:</p></li>
-</ol>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*   Skor Gleason (1-10)
-</pre></div>
-</div>
-<h2>1. Menghitung Jarak Dissimilarity Atribut Binary</h2><ul class="simple">
-<li><p>Ambil Sampel pada ID Pasien dan Kemungkinan terkena kanker payudara</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_binary</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Kemungkinan Terkena Kanker Payudara&quot;</span><span class="p">]]</span>
+</pre>
+                    </div>
+                  </div>
+                  <ol class="arabic simple" start="4">
+                    <li>
+                      <p>Atribut Ordinal:</p>
+                    </li>
+                  </ol>
+                  <div class="highlight-none notranslate">
+                    <div class="highlight">
+                      <pre><span></span>*   Skor Gleason (1-10)
+</pre>
+                    </div>
+                  </div>
+                  <h2>1. Menghitung Jarak Dissimilarity Atribut Binary</h2>
+                  <ul class="simple">
+                    <li>
+                      <p>Ambil Sampel pada ID Pasien dan Kemungkinan terkena kanker payudara</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">data_binary</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Kemungkinan Terkena Kanker Payudara&quot;</span><span class="p">]]</span>
 
 <span class="n">data_binary</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-dd899136-e8e5-4fe1-ba94-82e47ab003cb">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output text_html">
+                        <div id="df-dd899136-e8e5-4fe1-ba94-82e47ab003cb">
+                          <div class="colab-df-container">
+                            <div>
+                              <style scoped>
+                                .dataframe tbody tr th:only-of-type {
+                                  vertical-align: middle;
+                                }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+                                .dataframe tbody tr th {
+                                  vertical-align: top;
+                                }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Kemungkinan Terkena Kanker Payudara</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>P001</td>
-      <td>Ya</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>P002</td>
-      <td>Tidak</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>P003</td>
-      <td>Ya</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P004</td>
-      <td>Ya</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>P005</td>
-      <td>Tidak</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-dd899136-e8e5-4fe1-ba94-82e47ab003cb')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
+                                .dataframe thead th {
+                                  text-align: right;
+                                }
+                              </style>
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Kemungkinan Terkena Kanker Payudara</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>0</th>
+                                    <td>P001</td>
+                                    <td>Ya</td>
+                                  </tr>
+                                  <tr>
+                                    <th>1</th>
+                                    <td>P002</td>
+                                    <td>Tidak</td>
+                                  </tr>
+                                  <tr>
+                                    <th>2</th>
+                                    <td>P003</td>
+                                    <td>Ya</td>
+                                  </tr>
+                                  <tr>
+                                    <th>3</th>
+                                    <td>P004</td>
+                                    <td>Ya</td>
+                                  </tr>
+                                  <tr>
+                                    <th>4</th>
+                                    <td>P005</td>
+                                    <td>Tidak</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <button class="colab-df-convert"
+                              onclick="convertToInteractive('df-dd899136-e8e5-4fe1-ba94-82e47ab003cb')"
+                              title="Convert this dataframe to an interactive table." style="display:none;">
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                  d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" />
+                                <path
+                                  d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+                              </svg>
+                            </button>
 
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
+                            <style>
+                              .colab-df-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 12px;
+                              }
 
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
+                              .colab-df-convert {
+                                background-color: #E8F0FE;
+                                border: none;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: none;
+                                fill: #1967D2;
+                                height: 32px;
+                                padding: 0 0 0 0;
+                                width: 32px;
+                              }
 
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+                              .colab-df-convert:hover {
+                                background-color: #E2EBFA;
+                                box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+                                fill: #174EA6;
+                              }
 
-      <script>
-        const buttonEl =
-          document.querySelector('#df-dd899136-e8e5-4fe1-ba94-82e47ab003cb button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
+                              [theme=dark] .colab-df-convert {
+                                background-color: #3B4455;
+                                fill: #D2E3FC;
+                              }
 
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-dd899136-e8e5-4fe1-ba94-82e47ab003cb');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
+                              [theme=dark] .colab-df-convert:hover {
+                                background-color: #434B5C;
+                                box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+                                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+                                fill: #FFFFFF;
+                              }
+                            </style>
 
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<ul class="simple">
-<li><p>Source Code</p></li>
-</ul>
-<p>Parameters:</p>
-<ul class="simple">
-<li><p>id (str): ID pasien pertama.</p></li>
-<li><p>id2 (str): ID pasien kedua.</p></li>
-<li><p>attribute (str): nama atribut yang akan dihitung jarak dissimilarity-nya.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/iamwilldev/2a73758f9e4e98b71097715c6043381c/raw/a626cfa9d1b61a4b66aee45ca48af0a6efdcffb1/medis-pd-dataset.csv&quot;</span><span class="p">)</span>
+                            <script>
+                              const buttonEl =
+                                document.querySelector(
+                                  '#df-dd899136-e8e5-4fe1-ba94-82e47ab003cb button.colab-df-convert');
+                              buttonEl.style.display =
+                                google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+                              async function convertToInteractive(key) {
+                                const element = document.querySelector('#df-dd899136-e8e5-4fe1-ba94-82e47ab003cb');
+                                const dataTable =
+                                  await google.colab.kernel.invokeFunction('convertToInteractive',
+                                    [key], {});
+                                if (!dataTable) return;
+
+                                const docLinkHtml = 'Like what you see? Visit the ' +
+                                  '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' +
+                                  ' to learn more about interactive tables.';
+                                element.innerHTML = '';
+                                dataTable['output_type'] = 'display_data';
+                                await google.colab.output.renderOutput(dataTable, element);
+                                const docLink = document.createElement('div');
+                                docLink.innerHTML = docLinkHtml;
+                                element.appendChild(docLink);
+                              }
+                            </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="simple">
+                    <li>
+                      <p>Source Code</p>
+                    </li>
+                  </ul>
+                  <p>Parameters:</p>
+                  <ul class="simple">
+                    <li>
+                      <p>id (str): ID pasien pertama.</p>
+                    </li>
+                    <li>
+                      <p>id2 (str): ID pasien kedua.</p>
+                    </li>
+                    <li>
+                      <p>attribute (str): nama atribut yang akan dihitung jarak dissimilarity-nya.</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/iamwilldev/2a73758f9e4e98b71097715c6043381c/raw/a626cfa9d1b61a4b66aee45ca48af0a6efdcffb1/medis-pd-dataset.csv&quot;</span><span class="p">)</span>
 
 <span class="c1"># ganti nilai pada kolom &quot;Kemungkinan Terkena Kanker Payudara&quot; dengan 0 dan 1</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kemungkinan Terkena Kanker Payudara&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kemungkinan Terkena Kanker Payudara&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Tidak&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Ya&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
@@ -836,184 +918,210 @@ document.write(`
 <span class="c1"># Call the function with different inputs to demonstrate its use</span>
 <span class="n">calculate_dissimilarity_distance</span><span class="p">(</span><span class="s1">&#39;P001&#39;</span><span class="p">,</span> <span class="s1">&#39;P002&#39;</span><span class="p">,</span> <span class="s1">&#39;Kemungkinan Terkena Kanker Payudara&#39;</span><span class="p">)</span>
 <span class="n">calculate_dissimilarity_distance</span><span class="p">(</span><span class="s1">&#39;P001&#39;</span><span class="p">,</span> <span class="s1">&#39;P003&#39;</span><span class="p">,</span> <span class="s1">&#39;Kemungkinan Terkena Kanker Payudara&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak dissimilarity Binary antara P001 dan P002 pada kolom Kemungkinan Terkena Kanker Payudara adalah: 1.00
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output stream highlight-myst-ansi notranslate">
+                        <div class="highlight">
+                          <pre><span></span>Jarak dissimilarity Binary antara P001 dan P002 pada kolom Kemungkinan Terkena Kanker Payudara adalah: 1.00
 Jarak dissimilarity Binary antara P001 dan P003 pada kolom Kemungkinan Terkena Kanker Payudara adalah: 0.00
-</pre></div>
-</div>
-</div>
-</div>
-<h2>2. Menghitung Jarak Dissimilarity Atribut Numeric</h2><ul class="simple">
-<li><p>Ambil Sampel pada ID Pasien, Umur, Ukuran tumor dan Jumlah nodus getah bening</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_numeric</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Umur&quot;</span><span class="p">,</span> <span class="s2">&quot;Ukuran Tumor (cm)&quot;</span><span class="p">,</span> <span class="s2">&quot;Jumlah Nodus Getah Bening&quot;</span><span class="p">]]</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>2. Menghitung Jarak Dissimilarity Atribut Numeric</h2>
+                  <ul class="simple">
+                    <li>
+                      <p>Ambil Sampel pada ID Pasien, Umur, Ukuran tumor dan Jumlah nodus getah bening</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">data_numeric</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Umur&quot;</span><span class="p">,</span> <span class="s2">&quot;Ukuran Tumor (cm)&quot;</span><span class="p">,</span> <span class="s2">&quot;Jumlah Nodus Getah Bening&quot;</span><span class="p">]]</span>
 
 <span class="n">data_numeric</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-da04e567-27a3-4456-8b19-2add4c7c71e4">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output text_html">
+                        <div id="df-da04e567-27a3-4456-8b19-2add4c7c71e4">
+                          <div class="colab-df-container">
+                            <div>
+                              <style scoped>
+                                .dataframe tbody tr th:only-of-type {
+                                  vertical-align: middle;
+                                }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+                                .dataframe tbody tr th {
+                                  vertical-align: top;
+                                }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Umur</th>
-      <th>Ukuran Tumor (cm)</th>
-      <th>Jumlah Nodus Getah Bening</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>P001</td>
-      <td>50</td>
-      <td>3.5</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>P002</td>
-      <td>45</td>
-      <td>1.2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>P003</td>
-      <td>62</td>
-      <td>4.0</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P004</td>
-      <td>38</td>
-      <td>2.5</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>P005</td>
-      <td>55</td>
-      <td>1.0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-da04e567-27a3-4456-8b19-2add4c7c71e4')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
+                                .dataframe thead th {
+                                  text-align: right;
+                                }
+                              </style>
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Umur</th>
+                                    <th>Ukuran Tumor (cm)</th>
+                                    <th>Jumlah Nodus Getah Bening</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>0</th>
+                                    <td>P001</td>
+                                    <td>50</td>
+                                    <td>3.5</td>
+                                    <td>2</td>
+                                  </tr>
+                                  <tr>
+                                    <th>1</th>
+                                    <td>P002</td>
+                                    <td>45</td>
+                                    <td>1.2</td>
+                                    <td>0</td>
+                                  </tr>
+                                  <tr>
+                                    <th>2</th>
+                                    <td>P003</td>
+                                    <td>62</td>
+                                    <td>4.0</td>
+                                    <td>3</td>
+                                  </tr>
+                                  <tr>
+                                    <th>3</th>
+                                    <td>P004</td>
+                                    <td>38</td>
+                                    <td>2.5</td>
+                                    <td>1</td>
+                                  </tr>
+                                  <tr>
+                                    <th>4</th>
+                                    <td>P005</td>
+                                    <td>55</td>
+                                    <td>1.0</td>
+                                    <td>0</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <button class="colab-df-convert"
+                              onclick="convertToInteractive('df-da04e567-27a3-4456-8b19-2add4c7c71e4')"
+                              title="Convert this dataframe to an interactive table." style="display:none;">
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                  d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" />
+                                <path
+                                  d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+                              </svg>
+                            </button>
 
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
+                            <style>
+                              .colab-df-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 12px;
+                              }
 
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
+                              .colab-df-convert {
+                                background-color: #E8F0FE;
+                                border: none;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: none;
+                                fill: #1967D2;
+                                height: 32px;
+                                padding: 0 0 0 0;
+                                width: 32px;
+                              }
 
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+                              .colab-df-convert:hover {
+                                background-color: #E2EBFA;
+                                box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+                                fill: #174EA6;
+                              }
 
-      <script>
-        const buttonEl =
-          document.querySelector('#df-da04e567-27a3-4456-8b19-2add4c7c71e4 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
+                              [theme=dark] .colab-df-convert {
+                                background-color: #3B4455;
+                                fill: #D2E3FC;
+                              }
 
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-da04e567-27a3-4456-8b19-2add4c7c71e4');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
+                              [theme=dark] .colab-df-convert:hover {
+                                background-color: #434B5C;
+                                box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+                                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+                                fill: #FFFFFF;
+                              }
+                            </style>
 
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<ul class="simple">
-<li><p>Source Code</p></li>
-</ul>
-<p>Parameters:</p>
-<ul class="simple">
-<li><p>id1 (str): ID pasien pertama.</p></li>
-<li><p>id2 (str): ID pasien kedua.</p></li>
-<li><p>atribut[]: Umur, Ukuran Tumor (cm), Jumlah Nodus Getah Bening</p></li>
-<li><p>data_numeric: Tabel data frame</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi untuk menghitung jarak Euclidean antara dua data</span>
+                            <script>
+                              const buttonEl =
+                                document.querySelector(
+                                  '#df-da04e567-27a3-4456-8b19-2add4c7c71e4 button.colab-df-convert');
+                              buttonEl.style.display =
+                                google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+                              async function convertToInteractive(key) {
+                                const element = document.querySelector('#df-da04e567-27a3-4456-8b19-2add4c7c71e4');
+                                const dataTable =
+                                  await google.colab.kernel.invokeFunction('convertToInteractive',
+                                    [key], {});
+                                if (!dataTable) return;
+
+                                const docLinkHtml = 'Like what you see? Visit the ' +
+                                  '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' +
+                                  ' to learn more about interactive tables.';
+                                element.innerHTML = '';
+                                dataTable['output_type'] = 'display_data';
+                                await google.colab.output.renderOutput(dataTable, element);
+                                const docLink = document.createElement('div');
+                                docLink.innerHTML = docLinkHtml;
+                                element.appendChild(docLink);
+                              }
+                            </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="simple">
+                    <li>
+                      <p>Source Code</p>
+                    </li>
+                  </ul>
+                  <p>Parameters:</p>
+                  <ul class="simple">
+                    <li>
+                      <p>id1 (str): ID pasien pertama.</p>
+                    </li>
+                    <li>
+                      <p>id2 (str): ID pasien kedua.</p>
+                    </li>
+                    <li>
+                      <p>atribut[]: Umur, Ukuran Tumor (cm), Jumlah Nodus Getah Bening</p>
+                    </li>
+                    <li>
+                      <p>data_numeric: Tabel data frame</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="c1"># Fungsi untuk menghitung jarak Euclidean antara dua data</span>
 <span class="k">def</span> <span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">atribut1</span><span class="p">,</span> <span class="n">atribut2</span><span class="p">):</span>
     <span class="n">jarak</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">atribut1</span><span class="p">)):</span>
@@ -1034,171 +1142,197 @@ Jarak dissimilarity Binary antara P001 dan P003 pada kolom Kemungkinan Terkena K
 
 <span class="n">jarak</span> <span class="o">=</span> <span class="n">hitung_jarak</span><span class="p">(</span><span class="s1">&#39;P001&#39;</span><span class="p">,</span> <span class="s1">&#39;P003&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Umur&quot;</span><span class="p">,</span> <span class="s2">&quot;Ukuran Tumor (cm)&quot;</span><span class="p">,</span> <span class="s2">&quot;Jumlah Nodus Getah Bening&quot;</span><span class="p">],</span> <span class="n">data_numeric</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jarak dissimilarity Numeric P001 dan P003 pada atribut Umur, Ukuran Tumor (cm), Jumlah Nodus Getah Bening adalah&quot;</span><span class="p">,</span> <span class="n">jarak</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak dissimilarity Numeric P001 dan P003 pada atribut Umur, Ukuran Tumor (cm), Jumlah Nodus Getah Bening adalah 12.05197079319395
-</pre></div>
-</div>
-</div>
-</div>
-<h2>3. Menghitung Jarak Dissimilarity Atribut Nominal/Kategorical</h2><ul class="simple">
-<li><p>Ambil Sampel pada ID Pasien dan Jenis Kanker Payudara</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_kategorical</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Jenis&quot;</span><span class="p">]]</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output stream highlight-myst-ansi notranslate">
+                        <div class="highlight">
+                          <pre><span></span>Jarak dissimilarity Numeric P001 dan P003 pada atribut Umur, Ukuran Tumor (cm), Jumlah Nodus Getah Bening adalah 12.05197079319395
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>3. Menghitung Jarak Dissimilarity Atribut Nominal/Kategorical</h2>
+                  <ul class="simple">
+                    <li>
+                      <p>Ambil Sampel pada ID Pasien dan Jenis Kanker Payudara</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">data_kategorical</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Jenis&quot;</span><span class="p">]]</span>
 
 <span class="n">data_kategorical</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-3a0964c8-a6e5-4e8e-a15e-845215800672">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output text_html">
+                        <div id="df-3a0964c8-a6e5-4e8e-a15e-845215800672">
+                          <div class="colab-df-container">
+                            <div>
+                              <style scoped>
+                                .dataframe tbody tr th:only-of-type {
+                                  vertical-align: middle;
+                                }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+                                .dataframe tbody tr th {
+                                  vertical-align: top;
+                                }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Jenis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>P001</td>
-      <td>Karsinoma Duktal Invasif</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>P002</td>
-      <td>Karsinoma Lobular Invasif</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>P003</td>
-      <td>Karsinoma Duktal Invasif</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P004</td>
-      <td>Karsinoma Duktal Invasif</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>P005</td>
-      <td>Karsinoma Lobular Invasif</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-3a0964c8-a6e5-4e8e-a15e-845215800672')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
+                                .dataframe thead th {
+                                  text-align: right;
+                                }
+                              </style>
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Jenis</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>0</th>
+                                    <td>P001</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                  </tr>
+                                  <tr>
+                                    <th>1</th>
+                                    <td>P002</td>
+                                    <td>Karsinoma Lobular Invasif</td>
+                                  </tr>
+                                  <tr>
+                                    <th>2</th>
+                                    <td>P003</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                  </tr>
+                                  <tr>
+                                    <th>3</th>
+                                    <td>P004</td>
+                                    <td>Karsinoma Duktal Invasif</td>
+                                  </tr>
+                                  <tr>
+                                    <th>4</th>
+                                    <td>P005</td>
+                                    <td>Karsinoma Lobular Invasif</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <button class="colab-df-convert"
+                              onclick="convertToInteractive('df-3a0964c8-a6e5-4e8e-a15e-845215800672')"
+                              title="Convert this dataframe to an interactive table." style="display:none;">
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                  d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" />
+                                <path
+                                  d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+                              </svg>
+                            </button>
 
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
+                            <style>
+                              .colab-df-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 12px;
+                              }
 
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
+                              .colab-df-convert {
+                                background-color: #E8F0FE;
+                                border: none;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: none;
+                                fill: #1967D2;
+                                height: 32px;
+                                padding: 0 0 0 0;
+                                width: 32px;
+                              }
 
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+                              .colab-df-convert:hover {
+                                background-color: #E2EBFA;
+                                box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+                                fill: #174EA6;
+                              }
 
-      <script>
-        const buttonEl =
-          document.querySelector('#df-3a0964c8-a6e5-4e8e-a15e-845215800672 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
+                              [theme=dark] .colab-df-convert {
+                                background-color: #3B4455;
+                                fill: #D2E3FC;
+                              }
 
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-3a0964c8-a6e5-4e8e-a15e-845215800672');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
+                              [theme=dark] .colab-df-convert:hover {
+                                background-color: #434B5C;
+                                box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+                                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+                                fill: #FFFFFF;
+                              }
+                            </style>
 
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<ul class="simple">
-<li><p>Source Code</p></li>
-</ul>
-<p>Parameters:</p>
-<ul class="simple">
-<li><p>data (DataFrame): dataset yang berisi data pasien.</p></li>
-<li><p>attribute (str): nama atribut yang akan dihitung jarak dissimilarity-nya.</p></li>
-<li><p>patient1 (str): ID pasien pertama.</p></li>
-<li><p>patient2 (str): ID pasien kedua.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+                            <script>
+                              const buttonEl =
+                                document.querySelector(
+                                  '#df-3a0964c8-a6e5-4e8e-a15e-845215800672 button.colab-df-convert');
+                              buttonEl.style.display =
+                                google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+                              async function convertToInteractive(key) {
+                                const element = document.querySelector('#df-3a0964c8-a6e5-4e8e-a15e-845215800672');
+                                const dataTable =
+                                  await google.colab.kernel.invokeFunction('convertToInteractive',
+                                    [key], {});
+                                if (!dataTable) return;
+
+                                const docLinkHtml = 'Like what you see? Visit the ' +
+                                  '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' +
+                                  ' to learn more about interactive tables.';
+                                element.innerHTML = '';
+                                dataTable['output_type'] = 'display_data';
+                                await google.colab.output.renderOutput(dataTable, element);
+                                const docLink = document.createElement('div');
+                                docLink.innerHTML = docLinkHtml;
+                                element.appendChild(docLink);
+                              }
+                            </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="simple">
+                    <li>
+                      <p>Source Code</p>
+                    </li>
+                  </ul>
+                  <p>Parameters:</p>
+                  <ul class="simple">
+                    <li>
+                      <p>data (DataFrame): dataset yang berisi data pasien.</p>
+                    </li>
+                    <li>
+                      <p>attribute (str): nama atribut yang akan dihitung jarak dissimilarity-nya.</p>
+                    </li>
+                    <li>
+                      <p>patient1 (str): ID pasien pertama.</p>
+                    </li>
+                    <li>
+                      <p>patient2 (str): ID pasien kedua.</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">def</span> <span class="nf">simple_matching_distance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">patient1</span><span class="p">,</span> <span class="n">patient2</span><span class="p">):</span>
 
@@ -1224,169 +1358,191 @@ Jarak dissimilarity Binary antara P001 dan P003 pada kolom Kemungkinan Terkena K
 
 <span class="c1"># menampilkan hasil</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jarak dissimilarity Kategorical&quot;</span><span class="p">,</span> <span class="n">patient1</span><span class="p">,</span> <span class="s2">&quot;dan&quot;</span><span class="p">,</span> <span class="n">patient2</span><span class="p">,</span> <span class="s2">&quot;pada atribut&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="s2">&quot;Kanker adalah&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak dissimilarity Kategorical P001 dan P003 pada atribut Jenis Kanker adalah 0.5
-</pre></div>
-</div>
-</div>
-</div>
-<h2>4. Menghitung Jarak Dissimilarity Atribut Ordinal</h2><ul class="simple">
-<li><p>Ambil Sampel pada ID Pasien dan Skor Gleason</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_ordinal</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Skor Gleason&quot;</span><span class="p">]]</span>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output stream highlight-myst-ansi notranslate">
+                        <div class="highlight">
+                          <pre><span></span>Jarak dissimilarity Kategorical P001 dan P003 pada atribut Jenis Kanker adalah 0.5
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>4. Menghitung Jarak Dissimilarity Atribut Ordinal</h2>
+                  <ul class="simple">
+                    <li>
+                      <p>Ambil Sampel pada ID Pasien dan Skor Gleason</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="n">data_ordinal</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Skor Gleason&quot;</span><span class="p">]]</span>
 
 <span class="n">data_ordinal</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-9af30f59-0742-4af4-83a9-82b666c1761e">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output text_html">
+                        <div id="df-9af30f59-0742-4af4-83a9-82b666c1761e">
+                          <div class="colab-df-container">
+                            <div>
+                              <style scoped>
+                                .dataframe tbody tr th:only-of-type {
+                                  vertical-align: middle;
+                                }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+                                .dataframe tbody tr th {
+                                  vertical-align: top;
+                                }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Skor Gleason</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>P001</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>P002</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>P003</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>P004</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>P005</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-9af30f59-0742-4af4-83a9-82b666c1761e')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
+                                .dataframe thead th {
+                                  text-align: right;
+                                }
+                              </style>
+                              <table border="1" class="dataframe">
+                                <thead>
+                                  <tr style="text-align: right;">
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Skor Gleason</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th>0</th>
+                                    <td>P001</td>
+                                    <td>7</td>
+                                  </tr>
+                                  <tr>
+                                    <th>1</th>
+                                    <td>P002</td>
+                                    <td>6</td>
+                                  </tr>
+                                  <tr>
+                                    <th>2</th>
+                                    <td>P003</td>
+                                    <td>8</td>
+                                  </tr>
+                                  <tr>
+                                    <th>3</th>
+                                    <td>P004</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <th>4</th>
+                                    <td>P005</td>
+                                    <td>3</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <button class="colab-df-convert"
+                              onclick="convertToInteractive('df-9af30f59-0742-4af4-83a9-82b666c1761e')"
+                              title="Convert this dataframe to an interactive table." style="display:none;">
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                  d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" />
+                                <path
+                                  d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+                              </svg>
+                            </button>
 
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
+                            <style>
+                              .colab-df-container {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 12px;
+                              }
 
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
+                              .colab-df-convert {
+                                background-color: #E8F0FE;
+                                border: none;
+                                border-radius: 50%;
+                                cursor: pointer;
+                                display: none;
+                                fill: #1967D2;
+                                height: 32px;
+                                padding: 0 0 0 0;
+                                width: 32px;
+                              }
 
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
+                              .colab-df-convert:hover {
+                                background-color: #E2EBFA;
+                                box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+                                fill: #174EA6;
+                              }
 
-      <script>
-        const buttonEl =
-          document.querySelector('#df-9af30f59-0742-4af4-83a9-82b666c1761e button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
+                              [theme=dark] .colab-df-convert {
+                                background-color: #3B4455;
+                                fill: #D2E3FC;
+                              }
 
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-9af30f59-0742-4af4-83a9-82b666c1761e');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
+                              [theme=dark] .colab-df-convert:hover {
+                                background-color: #434B5C;
+                                box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+                                filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+                                fill: #FFFFFF;
+                              }
+                            </style>
 
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<ul class="simple">
-<li><p>Source Code</p></li>
-</ul>
-<p>Parameters:</p>
-<ul class="simple">
-<li><p>id1 (str): ID pasien pertama.</p></li>
-<li><p>id2 (str): ID pasien kedua.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># buat tabel dengan data Skor Gleason</span>
+                            <script>
+                              const buttonEl =
+                                document.querySelector(
+                                  '#df-9af30f59-0742-4af4-83a9-82b666c1761e button.colab-df-convert');
+                              buttonEl.style.display =
+                                google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+                              async function convertToInteractive(key) {
+                                const element = document.querySelector('#df-9af30f59-0742-4af4-83a9-82b666c1761e');
+                                const dataTable =
+                                  await google.colab.kernel.invokeFunction('convertToInteractive',
+                                    [key], {});
+                                if (!dataTable) return;
+
+                                const docLinkHtml = 'Like what you see? Visit the ' +
+                                  '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' +
+                                  ' to learn more about interactive tables.';
+                                element.innerHTML = '';
+                                dataTable['output_type'] = 'display_data';
+                                await google.colab.output.renderOutput(dataTable, element);
+                                const docLink = document.createElement('div');
+                                docLink.innerHTML = docLinkHtml;
+                                element.appendChild(docLink);
+                              }
+                            </script>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="simple">
+                    <li>
+                      <p>Source Code</p>
+                    </li>
+                  </ul>
+                  <p>Parameters:</p>
+                  <ul class="simple">
+                    <li>
+                      <p>id1 (str): ID pasien pertama.</p>
+                    </li>
+                    <li>
+                      <p>id2 (str): ID pasien kedua.</p>
+                    </li>
+                  </ul>
+                  <div class="cell docutils container">
+                    <div class="cell_input docutils container">
+                      <div class="highlight-ipython3 notranslate">
+                        <div class="highlight">
+                          <pre><span></span><span class="c1"># buat tabel dengan data Skor Gleason</span>
 <span class="n">data_ordinal</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Skor Gleason&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
 <span class="c1"># fungsi untuk menghitung jarak dengan metode variabel skala interval</span>
@@ -1406,21 +1562,25 @@ Jarak dissimilarity Binary antara P001 dan P003 pada kolom Kemungkinan Terkena K
 <span class="c1"># contoh pemanggilan fungsi</span>
 <span class="n">calculate_distance</span><span class="p">(</span><span class="s1">&#39;P001&#39;</span><span class="p">,</span> <span class="s1">&#39;P002&#39;</span><span class="p">)</span>
 <span class="n">calculate_distance</span><span class="p">(</span><span class="s1">&#39;P001&#39;</span><span class="p">,</span> <span class="s1">&#39;P004&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jarak dissimilarity Ordinal antara P001 dan P002 pada atribut Skor Gleason: 0.5
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell_output docutils container">
+                      <div class="output stream highlight-myst-ansi notranslate">
+                        <div class="highlight">
+                          <pre><span></span>Jarak dissimilarity Ordinal antara P001 dan P002 pada atribut Skor Gleason: 0.5
 Jarak dissimilarity Ordinal antara P001 dan P004 pada atribut Skor Gleason: 1.0
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</pre>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-    <script type="text/x-thebe-config">
-    {
+              <script type="text/x-thebe-config">
+                {
         requestKernel: true,
         binderOptions: {
             repo: "binder-examples/jupyter-stacks-datascience",
@@ -1437,84 +1597,108 @@ Jarak dissimilarity Ordinal antara P001 dan P004 pada atribut Skor Gleason: 1.0
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+              <script>
+                kernelName = 'python3'
+              </script>
 
-                </article>
-              
+            </article>
 
-              
-              
-                <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
-<div class="prev-next-area">
-</div>
-                </footer>
-              
-            </div>
-            
-            
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data">1. Tipe data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menetukan-jarak-dari-data">2. Menetukan jarak dari data</a></li>
-</ul>
-  </nav></div>
 
-</div></div>
-              
-            
+
+            <footer class="bd-footer-article">
+              <!-- Previous / next buttons -->
+              <div class="prev-next-area">
+                <a class="left-prev" href="tugas1.html" title="previous page">
+                  <i class="fa-solid fa-angle-left"></i>
+                  <div class="prev-next-info">
+                    <p class="prev-next-subtitle">previous</p>
+                    <p class="prev-next-title">Tugas 1 - Join
+                      Data dari MySQL dan PostgreSQL Files</p>
+                  </div>
+                </a>
+                <a class="right-next" href="#" title="next page">
+                  <div class="prev-next-info">
+                    <p class="prev-next-subtitle">next</p>
+                    <p class="prev-next-title">Tugas 3 - Cooming soon</p>
+                  </div>
+                  <i class="fa-solid fa-angle-right"></i>
+                </a>
+              </div>
+            </footer>
+
           </div>
-          <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
-<div class="bd-footer-content__inner container">
-  
-  <div class="footer-item">
-    
-<p class="component-author">
-By The Jupyter Book Community
-</p>
 
-  </div>
-  
-  <div class="footer-item">
-    
-  <p class="copyright">
-    
-      © Copyright 2022.
-      <br/>
-    
-  </p>
 
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-  <div class="footer-item">
-    
-  </div>
-  
-</div></div>
-          </footer>
-        
+
+          <div class="bd-sidebar-secondary bd-toc">
+            <div class="sidebar-secondary-items sidebar-secondary__inner">
+
+              <div class="sidebar-secondary-item">
+                <div class="page-toc tocsection onthispage">
+                  <i class="fa-solid fa-list"></i> Contents
+                </div>
+                <nav class="bd-toc-nav page-toc">
+                  <ul class="visible nav section-nav flex-column">
+                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data">1.
+                        Tipe data</a></li>
+                    <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link"
+                        href="#menetukan-jarak-dari-data">2. Menetukan jarak dari data</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            <div class="bd-footer-content__inner container">
+
+              <div class="footer-item">
+
+                <p class="component-author">
+                  By Muhammad Muqtafin Nuha
+                </p>
+
+              </div>
+
+              <div class="footer-item">
+
+                <p class="copyright">
+
+                  © Copyright 2023.
+                  <br />
+
+                </p>
+
+              </div>
+
+              <div class="footer-item">
+
+              </div>
+
+              <div class="footer-item">
+
+              </div>
+
+            </div>
+          </div>
+        </footer>
+
 
       </main>
     </div>
   </div>
-  
+
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
   <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
   <footer class="bd-footer">
   </footer>
-  </body>
+</body>
+
 </html>
