@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/local/lib/python3.10/dist-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.10/dist-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import ipywidgets as widgets
+from IPython.display import display
+
+# Create an empty list to store the selected columns and values
+selected_columns = []
+
+# Create a form
+form = widgets.GridBox(layout=widgets.Layout(grid_template_columns='repeat(2, 250px)'))
+
+# Loop through each column in the dataset
+for i, column in enumerate(X.columns[:30]):  # Exclude the last column
+    # Determine the column position in the form
+    if i < num_columns_per_col:
+        column_idx = i
+    else:
+        column_idx = i - num_columns_per_col
+
+    # Prompt the user to enter a value for the column
+    value = widgets.Text(description=f"Enter value for {column}")
+
+    # Validate and process the entered value
+    def on_value_change(change, column=column):
+        if change['new']:
+            try:
+                value = float(change['new'].replace(',', '.'))  # Replace comma with period
+                selected_columns.append({
+                    "column": column,
+                    "value": value
+                })
+            except ValueError:
+                error_msg = widgets.HTML(value=f"<font color='red'>Invalid value entered for {column}. Please enter a valid numeric value.</font>")
+                error_msg.layout.margin = '0 0 0 10px'
+                form.children[column_idx*2+1].children += (error_msg,)
+
+    value.observe(on_value_change, 'value')
+
+    # Add the value widget to the form
+    form.children += (widgets.Label(value=column), value)
+
+# Display the form
+display(form)
+
+# Display the selected columns and values
+for column in selected_columns:
+    print(f"Column: {column['column']}, Value: {column['value']}")
+
+------------------
+
+
+[0;31m[0m
+[0;31mNameError[0mTraceback (most recent call last)
+[0;32m<ipython-input-18-04d0ddb5e016>[0m in [0;36m<cell line: 11>[0;34m()[0m
+[1;32m     11[0m [0;32mfor[0m [0mi[0m[0;34m,[0m [0mcolumn[0m [0;32min[0m [0menumerate[0m[0;34m([0m[0mX[0m[0;34m.[0m[0mcolumns[0m[0;34m[[0m[0;34m:[0m[0;36m30[0m[0;34m][0m[0;34m)[0m[0;34m:[0m  [0;31m# Exclude the last column[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m     [0;31m# Determine the column position in the form[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m     [0;32mif[0m [0mi[0m [0;34m<[0m [0mnum_columns_per_col[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m         [0mcolumn_idx[0m [0;34m=[0m [0mi[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m     [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'num_columns_per_col' is not defined
+
